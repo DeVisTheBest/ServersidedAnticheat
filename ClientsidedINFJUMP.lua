@@ -1,5 +1,5 @@
 -- Run with cheats/exploits
-local AllowedJumpHeight = 80 -- studs
+local AllowedJumpHeight = 100 -- studs
 local lastMagnitude = {}
 
 game.Players.PlayerAdded:Connect(function(player)
@@ -12,8 +12,8 @@ game.Players.PlayerAdded:Connect(function(player)
 				Vector3.new(0, -(humanoid.JumpHeight + humanoid.HipHeight + AllowedJumpHeight), 0))
 
 			if not raycast then -- Dont want them to die if they just fell from a building right?
-				if (root.Position.Y > lastMagnitude[player.Name]) then
-              print(player.Name .. " is using infinite jump!")
+				if (root.Position.Y > lastMagnitude[player.Name]) and not humanoid.Health == 0 then
+              				print(player.Name .. " is using infinite jump!")
 				end
 			end
 			lastMagnitude[player.Name] = root.Position.Y
