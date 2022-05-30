@@ -1,4 +1,4 @@
-local AllowedJumpHeight = 80 -- studs
+local AllowedJumpHeight = 100 -- studs
 local lastMagnitude = {}
 
 game.Players.PlayerAdded:Connect(function(player)
@@ -13,8 +13,11 @@ game.Players.PlayerAdded:Connect(function(player)
 			if not raycast then -- Dont want them to die if they just fell from a building right?
 				print(root.Position.Y, lastMagnitude[player.Name])
 				if (root.Position.Y > lastMagnitude[player.Name]) then
-					print("Punishing player ".. player.Name .. " | Reason: Infinite Jump")
-					humanoid:TakeDamage(humanoid.Health) -- Do whatever you want here, i would kill the player but you can kick them if you want
+					if not player.Health == 0 then
+						-- When testing the client version, i figured out that because of the little fling you get when you get killed it thinks you're using a cheat
+						print("Punishing player ".. player.Name .. " | Reason: Infinite Jump")
+						humanoid:TakeDamage(humanoid.Health) -- Do whatever you want here, i would kill the player but you can kick them if you want
+					end
 				end
 			end
 			lastMagnitude[player.Name] = root.Position.Y
