@@ -12,7 +12,7 @@ game.Players.PlayerAdded:Connect(function(player)
 				Vector3.new(0, -(humanoid.JumpHeight + humanoid.HipHeight + AllowedJumpHeight), 0))
 
 			if not raycast then -- Dont want them to die if they just fell from a building right?
-				if (root.Position.Y > lastMagnitude[player.Name]) then
+				if (root.Position.Y > lastMagnitude[player.Name]) and not humanoid.Health == 0 then
               				print(player.Name .. " is using infinite jump!")
 				end
 			end
